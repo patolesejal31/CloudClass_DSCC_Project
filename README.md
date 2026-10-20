@@ -1,8 +1,6 @@
 # CloudClass — MCA Semester III DSCC Mini Project
 
 **Project title:** CloudClass: Cloud-Based Student Assignment and File Management System  
-**Course context:** University of Mumbai, MCA Semester III, Distributed System & Cloud Computing (DSCC), NEP 2020 (2025–26 syllabus version)  
-**Team size:** 2–3 students
 
 ## 1. Abstract
 
@@ -152,106 +150,6 @@ React + Vite frontend (Vercel)
 
 The browser uses the Supabase client to call hosted services over HTTPS. PostgreSQL stores structured metadata. Storage holds file contents, not file blobs inside database rows. RLS policies enforce permissions at the database and storage layers.
 
-## 10. DSCC syllabus mapping
 
-| DSCC concept | CloudClass demonstration |
-|---|---|
-| Distributed system architecture | Frontend, authentication, database and object storage are separate network services |
-| Client-server communication / remote calls | Browser sends HTTPS requests to managed APIs |
-| Cloud computing architecture | Application, identity, data and storage layers |
-| SaaS | CloudClass is offered as an online classroom service |
-| PaaS | Managed frontend build and deployment through Vercel |
-| DBaaS | Managed PostgreSQL via Supabase |
-| Storage as a Service | Supabase private object storage |
-| Identity management | Auth users and student/teacher roles |
-| Security | RLS policies, private bucket and signed URLs |
-| QoS / performance | Measure response time and upload/download success |
-| Scalability | Explain how managed services separate app, data and file workloads |
-| Virtualization / IaaS | Optional separate VM experiment; not implemented by the main stack |
-
-**Academic honesty note:** This project uses managed services; it does not implement a distributed file system, RPC runtime, consensus algorithm, VM hypervisor or load balancer from scratch. Explain the distinction clearly in the viva.
-
-## 11. Test plan
-
-| Test | Expected result |
-|---|---|
-| Register a new student | Profile is created with student role |
-| Student tries to create an assignment | Database rejects the insert |
-| Teacher creates an assignment | Assignment appears for authenticated users |
-| Student uploads work | File and submission record are created |
-| Student attempts to read another student's submission | RLS denies the unauthorized row |
-| Download a private file | Authenticated, short-lived signed URL is generated |
-| Upload file over 10 MB | App rejects it; storage also enforces a 10 MB limit |
-| Refresh after deployment | Data remains because it is stored in managed services |
-| Open the app in two browsers | Both access the same cloud-hosted assignment data |
-
-Verify these tests yourself before claiming they passed. Record actual results in the report.
-
-## 12. Basic performance experiment
-
-For 10–20 trials, record the time for:
-- loading the assignment list,
-- creating an assignment,
-- uploading a small file,
-- downloading a file.
-
-Record the observed times in milliseconds, then calculate:
-
-`Average response time = sum of measured times / number of trials`
-
-Run tests under the same network conditions and record file sizes. This is a small classroom experiment, not a formal cloud benchmark.
-
-## 13. Work division
-
-### Two members
-- Member A: UI, React components and responsive design.
-- Member B: Supabase schema, authentication, RLS, storage and deployment.
-- Both: integration, tests, report and viva.
-
-### Three members
-- Member A: frontend and dashboards.
-- Member B: database, auth, RLS and storage integration.
-- Member C: deployment, testing, performance experiment, diagrams and documentation.
-- All members: code review and final demonstration.
-
-## 14. Four-week schedule
-
-- Week 1: requirements, architecture, Git repository, database and authentication.
-- Week 2: assignment creation, cloud file upload and student submissions.
-- Week 3: RLS/security checks, deployment and cross-browser testing.
-- Week 4: performance experiment, screenshots, diagrams, report and viva.
-
-## 15. Limitations and future scope
-
-- Current version supports one submission record per student per assignment.
-- Teacher accounts must be promoted by a trusted administrator.
-- No email notifications, grading rubric, course enrollment or real-time collaboration.
-- No custom RPC/RMI implementation or VM provisioning.
-- Future improvements: course enrollment, marks/feedback, notifications, file version history, audit logs, automated tests and optional IaaS deployment.
-
-## 16. Viva questions
-
-1. What is cloud computing, and why is it used in this project?
-2. Distinguish IaaS, PaaS and SaaS with examples from the implementation.
-3. Why use PostgreSQL for metadata and object storage for files?
-4. What is identity management?
-5. What is Row Level Security, and why is frontend-only role checking insufficient?
-6. What is a signed URL, and why should it expire?
-7. How does the project demonstrate a distributed application?
-8. What is the difference between availability and scalability?
-9. What would change if the application had 10,000 concurrent users?
-10. Which DSCC concepts are demonstrated directly, and which are only discussed?
-
-## 17. Final submission checklist
-
-- [ ] Project runs locally using `npm run dev`
-- [ ] SQL schema executed successfully
-- [ ] Student signup and sign-in work
-- [ ] Teacher role configured securely
-- [ ] Assignment creation works
-- [ ] Student file upload and status view work
-- [ ] RLS and private storage tests performed
-- [ ] Public deployment tested
-- [ ] Architecture and ER diagrams included
 - [ ] Screenshots and real test results included
 - [ ] Every group member can explain the design
